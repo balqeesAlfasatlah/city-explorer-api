@@ -39,8 +39,8 @@ const weatherData = weather.find(element=>{
     
 class Forecast {
 
-    constructor(date ,description) {
-        this.date = date
+    constructor(date,description) {
+        this.date = date;
         this.description = description
     }
 }
