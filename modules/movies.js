@@ -1,10 +1,15 @@
 const axios = require('axios');
+let inMemory ={};
+
 
 function handlerMovies(req ,res){
     let movieSeach = req.query.query;
 
 
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVE_API}&query=${movieSeach}`
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVE_API}&query=${movieSeach}`;
+    if(inMemory[movieSeach] !== undefined){
+        res.json(inMemory[movieSeach])
+    }else{
     axios.get(url).then(e => {
         console.log(e.data);
         
@@ -14,11 +19,12 @@ function handlerMovies(req ,res){
         movieData.map((item) => {
             newMovie.push(new Movies(item))
         });
+        inMemory[citySeach]=newMovie;
         res.json(newMovie);
     })
     .catch(error => res.send(error.message));
 }
-
+}
 
 class Movies{
     constructor(item){
