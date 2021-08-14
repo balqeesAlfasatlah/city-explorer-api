@@ -7,7 +7,7 @@ require('dotenv').config();
 const axios = require('axios');
 const PORT = process.env.PORT;
 const handlerWeather = require('./modules/weather');
-const handlerMovies = require('./modules/movies')
+const handlerMovies = require('./modules/movies');
 
 
 
