@@ -7,7 +7,7 @@ function handlerMovies(req ,res){
 
 
     let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVE_API}&query=${movieSeach}`;
-    if(inMemory[movieSeach] !== undefined){
+    if(inMemory[movieSeach]){
         res.json(inMemory[movieSeach])
     }else{
     axios.get(url).then(e => {
@@ -19,7 +19,7 @@ function handlerMovies(req ,res){
         movieData.map((item) => {
             newMovie.push(new Movies(item))
         });
-        inMemory[citySeach]=newMovie;
+        inMemory[movieSeach]=newMovie;
         res.json(newMovie);
     })
     .catch(error => res.send(error.message));
